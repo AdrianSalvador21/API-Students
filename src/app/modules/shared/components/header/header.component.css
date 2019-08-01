@@ -1,0 +1,8 @@
+.header-nav {
+  display: flex;
+  justify-content: center;
+}
+
+.header-nav-img {
+  width: 2rem;
+}

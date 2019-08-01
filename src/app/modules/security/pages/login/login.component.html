@@ -1,0 +1,29 @@
+<div class="row justify-content-center">
+  <!--INICIO DE SESION-->
+  <div class="col-sm-7 col-lg-5 login-container mt-5">
+    <p class="login-title">Iniciar sesión</p>
+    <form [formGroup]="filterForm" #form="ngForm">
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+          </div>
+          <input formControlName="user" type="text" id="text" class="form-control form-control-sm" aria-describedby="emailHelp" placeholder="Ingresa tu usuario" name="user" required>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></div>
+          </div>
+          <input formControlName="password" type="password" id="contrasenia" class="form-control form-control-sm" placeholder="Contraseña" minlength="3" name="password" required>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button type="submit" class="btn btn-dark btn-sm" [disabled]="filterForm.invalid" (click)="login()">Ingresar</button>
+      </div>
+    </form>
+  </div>
