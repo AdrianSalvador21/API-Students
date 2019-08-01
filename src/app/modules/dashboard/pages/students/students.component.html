@@ -1,1 +1,26 @@
-<p>students works!</p>
+<div class="row students-container m-3">
+  <div class="col-12 col-sm-6 col-md-6">
+    <ul class="list-group">
+      <li *ngFor="let student of students" class="list-group-item student-general-info-container">
+        <div class="student-general-info">
+          <i class="fas fa-user student-icon"></i>
+          <span>{{student.first_name}} {{student.last_name}} {{student.last_name_second}}</span>
+        </div>
+        <i class="fas fa-info-circle detail-icon" (click)="studentDetail(student.id)"></i>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-12 col-sm-6 col-md-6" *ngIf="!!selectedStudent">
+    <div class="card" style="width: 100%;">
+      <div class="card-body">
+        <h5 class="card-title">{{selectedStudent.first_name}} {{selectedStudent.last_name}} {{selectedStudent.last_name_second}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Correo: {{selectedStudent.email}}</h6>
+        <p class="card-text">Telefono: {{selectedStudent.phone}}</p>
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
+    </div>
+  </div>
+</div>
+

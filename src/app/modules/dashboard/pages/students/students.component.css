@@ -1,0 +1,21 @@
+.students-container {
+}
+
+.student-general-info {
+  display: flex;
+  align-items: center;
+}
+
+.student-general-info-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.student-icon {
+  margin-right: 0.8rem;
+}
+
+.detail-icon {
+  cursor: pointer;
+}

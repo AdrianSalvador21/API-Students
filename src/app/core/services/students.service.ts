@@ -30,6 +30,16 @@ export class StudentsService {
         }));
   }
 
+  getStudentDetail(id): any {
+    console.log(id);
+    return this.http.get<any>(`https://hack-the-job.smartlending.mx/schoolsystem/api/v1/students/${id}`)
+      .pipe(
+        map((response) => {
+          return response;
+        }));
+  }
+
+
   getCourses(): any {
     return this.http.get<any>(`https://hack-the-job.smartlending.mx/schoolsystem/api/v1/courses/`)
       .pipe(
@@ -42,12 +52,12 @@ export class StudentsService {
   createStudent(): any {
     return this.http.post<any>(`https://hack-the-job.smartlending.mx/schoolsystem/api/v1/students/`,
       {
-        first_name: 'Juan',
-        last_name: 'Sanchez',
-        last_name_second: 'Leo',
-        email: 'juan@juan.com',
-        phone: '1234567452',
-        birth_date: '1994-04-19'
+        first_name: 'Manuel',
+        last_name: 'Jimenez',
+        last_name_second: 'Arleo',
+        email: 'manuel@manue.com',
+        phone: '3502949294',
+        birth_date: '1992-04-20'
       }
     ).pipe(
       map((response) => {
