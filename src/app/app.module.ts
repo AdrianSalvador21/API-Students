@@ -7,6 +7,10 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TokenInterceptor} from './core/interceptors/tokenInterceptor';
 import {SharedModule} from './modules/shared/shared.module';
+import {StoreModule} from '@ngrx/store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
+import {appReducers} from './app.reducer';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,12 @@ import {SharedModule} from './modules/shared/shared.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forRoot( appReducers ),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [
     {

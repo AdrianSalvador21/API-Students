@@ -5,21 +5,14 @@ import {map} from 'rxjs/operators';
 @Injectable({providedIn: 'root'})
 export class StudentsService {
 
-  token = '';
-
   constructor(private http: HttpClient) {
-    this.token = localStorage.getItem('token');
   }
 
-  getToken(): string {
-    return localStorage.getItem('token');
-  }
-
-  login(): any {
+  login(data): any {
     return this.http.post<any>(`https://hack-the-job.smartlending.mx/schoolsystem/api/v1/oauth/`,
       {
-        username: 'adrian',
-        password: '4dr14n2019'
+        username: data.user,
+        password: data.password
       }
     ).pipe(
       map((response) => {
@@ -29,12 +22,7 @@ export class StudentsService {
       }));
   }
 
-  getStudents(token): any {
-    // const reqHeader = new HttpHeaders({
-    //   Authorization: 'Bearer ' + token.token
-    // });
-
-    console.log(token.token);
+  getStudents(): any {
     return this.http.get<any>(`https://hack-the-job.smartlending.mx/schoolsystem/api/v1/students/`)
       .pipe(
         map((response) => {
@@ -64,7 +52,6 @@ export class StudentsService {
     ).pipe(
       map((response) => {
         console.log(response);
-        localStorage.setItem('token', response.token);
         return response;
       }));
   }

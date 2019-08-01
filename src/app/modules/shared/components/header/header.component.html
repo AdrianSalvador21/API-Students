@@ -1,15 +1,20 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">
     <img src="../../../../assets/img/education.png" class="header-nav-img">
+    <span class="app-title">Students App</span>
   </a>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <button *ngIf="validUser" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div *ngIf="validUser" class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/students']">Alumnos</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/dashboard/students']">Alumnos</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/courser']" href="#">Materias</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/dashboard/courses']" href="#">Materias</a>
       </li>
     </ul>
   </div>

@@ -6,3 +6,8 @@
 .header-nav-img {
   width: 2rem;
 }
+
+.app-title {
+  margin-left: 1rem;
+  font-size: 1rem;
+}

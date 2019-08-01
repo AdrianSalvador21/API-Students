@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {StudentsService} from '../../../../core/services/students.service';
+import {SetTokenAction} from '../../../../core/reducers/securityReducer/security.actions';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../../../app.reducer';
 
 @Component({
   selector: 'app-login',
@@ -15,17 +18,18 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required]]
   });
 
-  constructor(public fb: FormBuilder, public studentsService: StudentsService, private router: Router) { }
+  constructor(public fb: FormBuilder, public studentsService: StudentsService, private router: Router, private store: Store<AppState>) { }
 
   ngOnInit() {
   }
 
   login() {
-    // this.studentsService.login(this.filterForm.getRawValue()).subscribe(tokenResponse => {
-    //   console.log(tokenResponse);
-    //   localStorage.setItem('token', tokenResponse.token);
-    //   this.router.navigate(['/students']);
-    // });
+    this.studentsService.login(this.filterForm.getRawValue()).subscribe(tokenResponse => {
+      console.log(tokenResponse);
+      const action = new SetTokenAction( tokenResponse.token );
+      this.store.dispatch( action );
+      this.router.navigate(['/dashboard/students']);
+    });
   }
 
 }

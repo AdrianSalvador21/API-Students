@@ -18,15 +18,15 @@ export class AppComponent implements OnInit {
     // });
 
 
-    this.studentsService.login().subscribe(tokenResponse => {
-      console.log(tokenResponse);
-      this.studentsService.getStudents(tokenResponse).subscribe(studentsResponse => {
-        console.log(studentsResponse);
-      });
-
-      this.studentsService.getCourses().subscribe(coursesResponse => {
-        console.log(coursesResponse);
-      });
-    });
+    // this.studentsService.login().subscribe(tokenResponse => {
+    //   console.log(tokenResponse);
+    //   this.studentsService.getStudents(tokenResponse).subscribe(studentsResponse => {
+    //     console.log(studentsResponse);
+    //   });
+    //
+    //   this.studentsService.getCourses().subscribe(coursesResponse => {
+    //     console.log(coursesResponse);
+    //   });
+    // });
   }
 }
