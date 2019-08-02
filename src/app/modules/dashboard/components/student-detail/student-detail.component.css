@@ -1,16 +1,6 @@
-.login-container {
-  /*border: 1px solid #80808075;*/
-  padding: 4rem;
-}
-
 .button-container {
   display: flex;
   justify-content: flex-end;
-}
-
-.login-title {
-  font-size: 1.5rem;
-  text-align: center;
 }
 
 .global-button {
@@ -19,3 +9,15 @@
   color: white;
 }
 
+.card-name {
+  font-size: 1rem;
+}
+
+.title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close-button {
+  cursor: pointer;
+}

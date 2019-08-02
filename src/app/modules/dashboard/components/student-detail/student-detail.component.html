@@ -1,39 +1,37 @@
-<div class="row m-3 new-student-container">
-  <button class="btn btn-sm global-button" data-toggle="modal" data-target="#addModal">Nuevo alumno</button>
-</div>
-<div class="row students-container m-3">
-  <div class="col-12 col-sm-6 col-md-6 mb-3">
-    <ul class="list-group">
-      <li *ngFor="let student of students" class="list-group-item student-general-info-container">
-        <div class="student-general-info">
-          <i class="fas fa-user student-icon"></i>
-          <span>{{student.first_name}} {{student.last_name}} {{student.last_name_second}}</span>
-        </div>
-        <i class="fas fa-info-circle detail-icon" (click)="studentDetail(student.id)"></i>
-      </li>
-    </ul>
-  </div>
-  <div class="col-12 col-sm-6 col-md-6" *ngIf="!!selectedStudent">
-    <app-student-detail (getStudents)="getStudents()" (closeCardEmitter)="closeCard()" [selectedStudent]="selectedStudent"></app-student-detail>
+<div class="card" style="width: 100%;">
+  <div class="card-body">
+    <div class="title-container">
+      <h5 class="card-title card-name">{{selectedStudent.first_name}} {{selectedStudent.last_name}} {{selectedStudent.last_name_second}}</h5>
+      <i class="fas fa-times-circle close-button" (click)="closeCard()"></i>
+    </div>
+    <h6 class="card-subtitle mb-2 text-muted">Correo: {{selectedStudent.email}}</h6>
+    <p class="card-text">Telefono: {{selectedStudent.phone}}</p>
+    <p class="card-text">Fecha de nacimiento: {{selectedStudent.birth_date | date:'dd/MM/yyy'}}</p>
+
+    <div class="button-container mt-5">
+      <button type="button" class="btn btn-danger btn-sm" (click)="deleteStudent()">Eliminar</button>
+      <button type="button" class="btn ml-2 btn-sm global-button" data-toggle="modal" data-target="#updateModal">Actualizar</button>
+    </div>
   </div>
 </div>
+
 
 
 
 <!--MODAL-->
-<div class="modal fade" id="addModal" #childModal tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+<div class="modal fade" id="updateModal" #childModal tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-light">
         <h4 class="modal-title" id="addModalLabel">
-          Nuevo alumno
+          Actualizar alumno
         </h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="addForm" #form="ngForm">
+        <form [formGroup]="updateForm" #form="ngForm">
 
           <div class="row">
             <div class="col-12 col-sm-6">
@@ -45,6 +43,7 @@
                        id="name-control"
                        formControlName="first_name"
                        aria-describedby="name-control-help"
+                       [value]="selectedStudent.first_name"
                        placeholder="Nombre alumno">
               </div>
             </div>
@@ -57,6 +56,7 @@
                        id="last-name-control"
                        formControlName="last_name"
                        aria-describedby="name-control-help"
+                       [value]="selectedStudent.last_name"
                        placeholder="Primer apellido">
               </div>
             </div>
@@ -72,6 +72,7 @@
                        id="last-second-control"
                        formControlName="last_name_second"
                        aria-describedby="name-control-help"
+                       [value]="selectedStudent.last_name_second"
                        placeholder="Segundo apellido">
               </div>
             </div>
@@ -83,6 +84,7 @@
                        class="form-control"
                        formControlName="email"
                        id="email-control"
+                       [value]="selectedStudent.email"
                        placeholder="Correo electronico">
               </div>
             </div>
@@ -97,6 +99,7 @@
                        class="form-control"
                        formControlName="phone"
                        id="phone-control"
+                       [value]="selectedStudent.phone"
                        placeholder="Teléfono">
               </div>
 
@@ -109,6 +112,7 @@
                        class="form-control"
                        formControlName="birth_date"
                        id="birth-control"
+                       [value]="selectedStudent.birth_date"
                        placeholder="Fecha de nacimiento">
               </div>
             </div>
@@ -118,22 +122,13 @@
 
         </form>
 
-        <!--<div class="fa-3x spinner-container" *ngIf="creatingRepository">-->
-          <!--<i class="fas fa-spinner fa-pulse spinner-icon"></i>-->
-        <!--</div>-->
-
-        <!--<div class="alert alert-danger error-dialog" role="alert" *ngIf="error">-->
-          <!--{{'repositories.createRepository.error' | translate}}-->
-        <!--</div>-->
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar</button>
         <button type="button"
-                [disabled]="addForm.invalid"
-                class="btn global-button btn-sm" (click)="createStudent()">Crear</button>
+                [disabled]="updateForm.invalid"
+                class="btn global-button btn-sm" (click)="updateStudent()">Actualizar</button>
       </div>
     </div>
   </div>
 </div>
-

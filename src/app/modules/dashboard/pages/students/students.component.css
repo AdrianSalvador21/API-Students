@@ -1,6 +1,12 @@
 .students-container {
 }
 
+.new-student-container {
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+}
+
 .student-general-info {
   display: flex;
   align-items: center;
@@ -18,4 +24,10 @@
 
 .detail-icon {
   cursor: pointer;
+}
+
+.global-button {
+  background-color: #337dbc;
+  border: none;
+  color: white;
 }

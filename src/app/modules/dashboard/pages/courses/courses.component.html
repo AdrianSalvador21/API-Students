@@ -1,1 +1,35 @@
-<p>courses works!</p>
+<div class="row m-3 courses-row">
+  <div class="col-12 col-sm-12 col-md-11 col-lg-8 courses-container" *ngIf="courses.length !== 0">
+    <ul class="list-group w-100">
+      <div *ngFor="let course of courses; let i = index">
+        <li class="list-group-item">
+          <div class="course-description-container">
+          <span>
+            {{course.name}}
+          </span>
+            <i (click)="getCourseDetail(course)" class="fas fa-list-ul course-detail-icon" data-toggle="collapse"
+               [attr.data-target]="'#' + course.collapseName"
+               aria-expanded="false" aria-controls="collapseExample"></i>
+          </div>
+        </li>
+        <div class="collapse" [id]="course.collapseName">
+          <div *ngIf="!!course.fullInfo" class="card card-body course-collapse-container">
+            <div class="row">
+              <div class="col-6">
+                <h5 class="card-title card-name">{{course.fullInfo.name}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{course.fullInfo.teacher}}</h6>
+                <p class="card-text course-general-info">Duración: {{course.fullInfo.hours}} horas</p>
+                <p class="card-text course-general-info">Salon: {{course.fullInfo.classroom}}</p>
+                <p class="card-text course-general-info">Fecha inicio: {{course.fullInfo.date_init | date:'dd/MM/yyy'}}</p>
+                <p class="card-text course-general-info">Salon: {{course.fullInfo.date_end | date:'dd/MM/yyy'}}</p>
+              </div>
+              <div class="col-6">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>

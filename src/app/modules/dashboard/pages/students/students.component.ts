@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {StudentsService} from '../../../../core/services/students.service';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-students',
@@ -7,12 +8,27 @@ import {StudentsService} from '../../../../core/services/students.service';
   styleUrls: ['./students.component.css']
 })
 export class StudentsComponent implements OnInit {
+  // @ts-ignore
+  @ViewChild('childModal') public childModal: ElementRef;
   students = [];
   selectedStudent: any;
 
-  constructor(public studentsService: StudentsService) { }
+  addForm = this.fb.group({
+    first_name: ['', [Validators.required]],
+    last_name: ['', [Validators.required]],
+    last_name_second: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    phone: ['', [Validators.required]],
+    birth_date: ['', [Validators.required]]
+  });
+
+  constructor(public studentsService: StudentsService, public fb: FormBuilder) { }
 
   ngOnInit() {
+    this.getStudents();
+  }
+
+  getStudents() {
     this.studentsService.getStudents().subscribe(studentsResponse => {
       console.log(studentsResponse);
       this.students = studentsResponse;
@@ -20,11 +36,26 @@ export class StudentsComponent implements OnInit {
   }
 
   studentDetail(id) {
-    console.log(id);
+    this.closeCard();
     this.studentsService.getStudentDetail(id).subscribe(detailResponse => {
       console.log(detailResponse);
       this.selectedStudent = detailResponse;
     });
+  }
+
+  createStudent() {
+    console.log(this.addForm.getRawValue());
+    this.studentsService.createStudent(this.addForm.getRawValue()).subscribe(createResponse => {
+      console.log(createResponse);
+      if (!!createResponse && createResponse.id !== '') {
+        this.getStudents();
+        this.childModal.nativeElement.click();
+      }
+    });
+  }
+
+  closeCard() {
+    this.selectedStudent = null;
   }
 
 }

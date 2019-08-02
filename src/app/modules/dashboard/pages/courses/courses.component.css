@@ -1,0 +1,26 @@
+.courses-container {
+  display: flex;
+  justify-content: center;
+}
+
+.courses-row {
+  justify-content: center;
+}
+
+.course-description-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.course-detail-icon {
+  cursor: pointer;
+}
+
+.course-collapse-container {
+  background-color: #f8f9fa;
+}
+
+.course-general-info {
+  margin-bottom: 0;
+}
