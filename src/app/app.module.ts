@@ -14,6 +14,7 @@ import {appReducers} from './app.reducer';
 
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
         },
         deps: [ HttpClient ]
       }
-    })
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     {
