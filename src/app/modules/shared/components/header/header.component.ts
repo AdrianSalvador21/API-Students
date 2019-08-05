@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../../app.reducer';
+import {SetTokenAction} from '../../../../core/reducers/securityReducer/security.actions';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,13 +12,20 @@ import {AppState} from '../../../../app.reducer';
 export class HeaderComponent implements OnInit {
   validUser = false;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>, private router: Router) { }
 
   ngOnInit() {
     this.store.select('security').subscribe(state => {
       console.log(state);
       this.validUser = state.token !== '';
     });
+  }
+
+  logout() {
+    console.log('here');
+    const action = new SetTokenAction( '');
+    this.store.dispatch( action );
+    this.router.navigate(['/security/login']);
   }
 
 }
