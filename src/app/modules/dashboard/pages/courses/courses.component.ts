@@ -28,7 +28,6 @@ export class CoursesComponent implements OnInit {
         course.enrolledStudentsIds = [];
         course.enrolledStudents = [];
       });
-      console.log(coursesResponse);
     });
   }
 
@@ -36,7 +35,6 @@ export class CoursesComponent implements OnInit {
     this.getEnrolledStudents(course);
     if (!course.fullInfo) {
       this.coursesService.getCourseDetail(course.id).subscribe(detailResponse => {
-        console.log(detailResponse);
         course.fullInfo = detailResponse;
       });
     } else {
@@ -57,14 +55,11 @@ export class CoursesComponent implements OnInit {
       course.enrolledStudents.forEach(enrolledStudent => {
         course.enrolledStudentsIds.push(enrolledStudent.id);
       });
-      console.log(course.enrolledStudentsIds);
-      console.log(course.enrolledStudents);
     });
   }
 
   enrollStudent(studentId, course) {
     this.coursesService.enrollStudent(studentId, course.id).subscribe(enrollResponse => {
-      console.log(enrollResponse);
       this.getEnrolledStudents(course);
     });
   }

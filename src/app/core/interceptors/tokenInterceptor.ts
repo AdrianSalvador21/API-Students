@@ -17,7 +17,6 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(public studentService: StudentsService, private store: Store<AppState>) {
     this.store.select('security').subscribe(state => {
       this.token = state.token;
-      console.log(this.token);
     });
   }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

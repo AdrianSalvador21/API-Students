@@ -20,7 +20,6 @@ export class CoursesService {
     return this.http.get<any>(`https://hack-the-job.smartlending.mx/schoolsystem/api/v1/courses/${id}`)
       .pipe(
         map((response) => {
-          console.log(response);
           return response;
         }));
   }
@@ -32,7 +31,6 @@ export class CoursesService {
       }
     ).pipe(
       map((response) => {
-        console.log(response);
         return response;
       }));
   }
@@ -41,7 +39,6 @@ export class CoursesService {
     return this.http.get<any>(`https://hack-the-job.smartlending.mx/schoolsystem/api/v1/courses/${id}/students/`)
       .pipe(
         map((response) => {
-          console.log(response);
           return response;
         }));
   }

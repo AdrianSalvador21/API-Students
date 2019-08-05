@@ -16,13 +16,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.store.select('security').subscribe(state => {
-      console.log(state);
       this.validUser = state.token !== '';
     });
   }
 
   logout() {
-    console.log('here');
     const action = new SetTokenAction( '');
     this.store.dispatch( action );
     this.router.navigate(['/security/login']);

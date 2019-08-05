@@ -16,7 +16,6 @@ export class StudentsService {
       }
     ).pipe(
       map((response) => {
-        console.log(response);
         localStorage.setItem('token', response.token);
         return response;
       }));
@@ -31,7 +30,6 @@ export class StudentsService {
   }
 
   getStudentDetail(id): any {
-    console.log(id);
     return this.http.get<any>(`https://hack-the-job.smartlending.mx/schoolsystem/api/v1/students/${id}`)
       .pipe(
         map((response) => {
@@ -54,7 +52,6 @@ export class StudentsService {
     return this.http.post<any>(`https://hack-the-job.smartlending.mx/schoolsystem/api/v1/students/`, data
     ).pipe(
       map((response) => {
-        console.log(response);
         return response;
       }));
   }
@@ -63,7 +60,6 @@ export class StudentsService {
     return this.http.delete<any>(`https://hack-the-job.smartlending.mx/schoolsystem/api/v1/students/${id}`
     ).pipe(
       map((response) => {
-        console.log(response);
         return response;
       }));
   }
@@ -72,7 +68,6 @@ export class StudentsService {
     return this.http.put<any>(`https://hack-the-job.smartlending.mx/schoolsystem/api/v1/students/${id}`, data
     ).pipe(
       map((response) => {
-        console.log(response);
         return response;
       }));
   }

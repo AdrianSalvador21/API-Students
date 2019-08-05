@@ -30,7 +30,6 @@ export class StudentsComponent implements OnInit {
 
   getStudents() {
     this.studentsService.getStudents().subscribe(studentsResponse => {
-      console.log(studentsResponse);
       this.students = studentsResponse;
     });
   }
@@ -38,15 +37,12 @@ export class StudentsComponent implements OnInit {
   studentDetail(id) {
     this.closeCard();
     this.studentsService.getStudentDetail(id).subscribe(detailResponse => {
-      console.log(detailResponse);
       this.selectedStudent = detailResponse;
     });
   }
 
   createStudent() {
-    console.log(this.addForm.getRawValue());
     this.studentsService.createStudent(this.addForm.getRawValue()).subscribe(createResponse => {
-      console.log(createResponse);
       if (!!createResponse && createResponse.id !== '') {
         this.getStudents();
         this.childModal.nativeElement.click();

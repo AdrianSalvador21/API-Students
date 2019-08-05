@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.studentsService.login(this.filterForm.getRawValue()).subscribe(tokenResponse => {
-      console.log(tokenResponse);
       const action = new SetTokenAction( tokenResponse.token );
       this.store.dispatch( action );
       this.router.navigate(['/dashboard/students']);

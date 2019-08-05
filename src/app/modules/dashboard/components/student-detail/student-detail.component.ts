@@ -34,9 +34,7 @@ export class StudentDetailComponent implements OnInit {
   }
 
   deleteStudent() {
-    console.log(this.selectedStudent);
     this.studentsService.deleteStudent(this.selectedStudent.id).subscribe(deleteResponse => {
-      console.log(deleteResponse);
       this.getStudents.emit();
       this.closeCardEmitter.emit();
     });
@@ -44,7 +42,6 @@ export class StudentDetailComponent implements OnInit {
 
   updateStudent() {
     this.studentsService.updateStudent(this.updateForm.getRawValue(), this.selectedStudent.id).subscribe(updateResponse => {
-      console.log(updateResponse);
       this.selectedStudent = this.updateForm.getRawValue();
       this.childModal.nativeElement.click();
       this.getStudents.emit();
