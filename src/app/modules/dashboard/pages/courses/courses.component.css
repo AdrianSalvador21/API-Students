@@ -24,3 +24,20 @@
 .course-general-info {
   margin-bottom: 0;
 }
+
+.enroll-student-element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.title {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.3rem;
+}

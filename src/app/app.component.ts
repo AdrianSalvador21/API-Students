@@ -13,20 +13,5 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.studentsService.createStudent().subscribe(createStudentResponse => {
-    //   console.log(createStudentResponse);
-    // });
-
-
-    // this.studentsService.login().subscribe(tokenResponse => {
-    //   console.log(tokenResponse);
-    //   this.studentsService.getStudents(tokenResponse).subscribe(studentsResponse => {
-    //     console.log(studentsResponse);
-    //   });
-    //
-    //   this.studentsService.getCourses().subscribe(coursesResponse => {
-    //     console.log(coursesResponse);
-    //   });
-    // });
   }
 }

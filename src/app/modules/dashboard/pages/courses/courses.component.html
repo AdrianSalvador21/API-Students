@@ -1,5 +1,9 @@
+<div class="title-container">
+  <h4 class="mb-3 ml-2 title">Cursos</h4>
+</div>
+
 <div class="row m-3 courses-row">
-  <div class="col-12 col-sm-12 col-md-11 col-lg-8 courses-container" *ngIf="courses.length !== 0">
+  <div class="col-12 col-sm-11 col-md-10 col-lg-9 courses-container" *ngIf="courses.length !== 0">
     <ul class="list-group w-100">
       <div *ngFor="let course of courses; let i = index">
         <li class="list-group-item">
@@ -15,16 +19,67 @@
         <div class="collapse" [id]="course.collapseName">
           <div *ngIf="!!course.fullInfo" class="card card-body course-collapse-container">
             <div class="row">
-              <div class="col-6">
+
+              <!--COURSE DETAIL-->
+              <div class="col-12 col-md-6 mb-2">
                 <h5 class="card-title card-name">{{course.fullInfo.name}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{course.fullInfo.teacher}}</h6>
-                <p class="card-text course-general-info">Duración: {{course.fullInfo.hours}} horas</p>
-                <p class="card-text course-general-info">Salon: {{course.fullInfo.classroom}}</p>
-                <p class="card-text course-general-info">Fecha inicio: {{course.fullInfo.date_init | date:'dd/MM/yyy'}}</p>
-                <p class="card-text course-general-info">Salon: {{course.fullInfo.date_end | date:'dd/MM/yyy'}}</p>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <p class="card-text course-general-info">Duración: {{course.fullInfo.hours}} horas</p>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <p class="card-text course-general-info">Salon: {{course.fullInfo.classroom}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <p class="card-text course-general-info">Fecha
+                      inicio: {{course.fullInfo.date_init | date:'dd/MM/yyy'}}</p>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <p class="card-text course-general-info">Salon: {{course.fullInfo.date_end | date:'dd/MM/yyy'}}</p>
+                  </div>
+                </div>
               </div>
-              <div class="col-6">
 
+              <!--COURSE STUDENTS-->
+              <div class="col-12 col-md-6 mb-2">
+                <h5 class="card-title card-name">Alumnos Inscritos</h5>
+                <div *ngIf="!course.enrolledStudents || course.enrolledStudents.length == 0" class="alert alert-warning" role="alert">
+                  Aún no hay alumnos inscritos.
+                </div>
+
+                <ul *ngIf="course.enrolledStudents.length !== 0" class="list-group">
+                    <li class="list-group-item" *ngFor="let enrolledStudent of course.enrolledStudents">
+                      <div class="enroll-student-element">
+                      <span>{{enrolledStudent.first_name}} {{enrolledStudent.last_name}}</span>
+                      </div>
+                    </li>
+                </ul>
+              </div>
+            </div>
+
+
+            <!---ENROLL STUDENTS-->
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6">
+                <h5 class="card-title card-name">Inscribir Alumno</h5>
+
+                <ul class="list-group">
+                  <div *ngFor="let student of students">
+                    <li class="list-group-item" *ngIf="!course.enrolledStudentsIds.includes(student.id)">
+                      <div class="enroll-student-element">
+                      <span>
+                        {{student.first_name}} {{student.last_name}}
+                      </span>
+                        <button (click)="enrollStudent(student.id, course)" type="button" class="btn btn-sm btn-warning">
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
+                    </li>
+                  </div>
+                </ul>
               </div>
             </div>
           </div>

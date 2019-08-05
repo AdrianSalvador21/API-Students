@@ -31,3 +31,14 @@
   border: none;
   color: white;
 }
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.title {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.3rem;
+}
